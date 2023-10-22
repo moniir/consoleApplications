@@ -74,8 +74,14 @@ class AVL {
     }
 
     Node leftRotate(Node node){
+        Node child = node.right;
+        Node childLeft = child.left;
 
-        return node;
+        child.left = node;
+        node.right = childLeft;
+        node.height = Math.max(height(node.left),height(node.right)+1);
+        child.height = Math.max(height(child.left),height(child.right)+1);
+        return child;
     }
     Node rightRotate(Node node){
         Node child = node.left;
